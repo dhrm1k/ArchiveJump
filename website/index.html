@@ -3,313 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ArchiveJump - Free Access to Knowledge</title>
-    <meta name="description" content="A simple browser extension that helps you access archived versions of articles when paywalls get in the way of learning.">
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>archivejump</title>
+    <meta name="description" content="browser extension for accessing archived articles">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            color: #333;
+        }
+        h1 { margin-bottom: 8px; }
+        h2 { margin-top: 40px; margin-bottom: 16px; }
+        a { color: #0066cc; }
+        a:hover { text-decoration: none; }
+        .install-link {
+            display: inline-block;
+            margin: 8px 16px 8px 0;
+            padding: 8px 16px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .install-link:hover {
+            background: #0052a3;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <span class="nav-title">ArchiveJump</span>
-            </div>
-            <div class="nav-links">
-                <a href="#features" class="nav-link">Features</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#install" class="nav-link">Install</a>
-                <a href="#support" class="nav-link">Support</a>
-            </div>
-        </div>
-    </nav>
-
-    <header class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    Knowledge shouldn't be
-                    <span class="highlight">locked away</span>
-                </h1>
-                <p class="hero-subtitle">
-                    ArchiveJump is a simple browser extension that helps you access archived versions of articles 
-                    when paywalls get in the way of learning, research, and staying informed.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#install" class="btn btn-primary">Get ArchiveJump Free</a>
-                    <a href="#about" class="btn btn-secondary">Learn More</a>
-                </div>
-                <p class="hero-note">
-                    <span class="note-icon">✨</span>
-                    Free, open-source, and respects your privacy
-                </p>
-            </div>
-            <div class="hero-visual">
-                <div class="browser-mockup">
-                    <div class="browser-header">
-                        <div class="browser-buttons">
-                            <span class="btn-close"></span>
-                            <span class="btn-minimize"></span>
-                            <span class="btn-maximize"></span>
-                        </div>
-                        <div class="browser-url">nytimes.com/article/important-news</div>
-                    </div>
-                    <div class="browser-content">
-                        <div class="paywall-overlay">
-                            <div class="paywall-text">Subscribe to continue reading...</div>
-                            <div class="archivejump-popup">
-                                <div class="popup-header">ArchiveJump</div>
-                                <div class="popup-text">Found archived version!</div>
-                                <div class="popup-button">🔄 Jump to Archive</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <section id="features" class="features">
-        <div class="container">
-            <h2 class="section-title">Simple tools for complex times</h2>
-            <p class="section-subtitle">
-                In an era where information is both abundant and restricted, ArchiveJump provides a bridge to knowledge.
-            </p>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Smart Detection</h3>
-                    <p>Automatically recognizes article links from major news sites. Only activates when you need it, staying out of your way otherwise.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Instant Access</h3>
-                    <p>One click takes you from a paywall to an archived version. Choose between searching archives or jumping to the latest saved copy.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
-                    <h3>Multiple Sources</h3>
-                    <p>Searches Archive.ph first, then falls back to Wayback Machine if needed. Maximizes your chances of finding what you're looking for.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🎨</div>
-                    <h3>Thoughtful Design</h3>
-                    <p>Clean, unobtrusive interface that respects your browsing experience. Visual feedback keeps you informed without being annoying.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3>Privacy First</h3>
-                    <p>No tracking, no data collection, no analytics. Your settings stay on your device. We don't know what you read.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🌍</div>
-                    <h3>Wide Support</h3>
-                    <p>Works with 15+ major news sites including NYT, WSJ, The Atlantic, Washington Post, The Guardian, and more.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>Why ArchiveJump exists</h2>
-                    <p class="large-text">
-                        Quality journalism costs money, and we respect that. Publishers need to sustain their operations, 
-                        pay their journalists, and continue producing important work.
-                    </p>
-                    <p>
-                        But sometimes you hit a paywall when researching for school, fact-checking information, or 
-                        trying to understand different perspectives on current events. Maybe you've already reached 
-                        your monthly limit, or you're exploring whether a publication is worth subscribing to.
-                    </p>
-                    <p>
-                        ArchiveJump helps in these moments by connecting you to archived versions that already exist 
-                        on the public web. We're not creating new archives or circumventing protections—we're simply 
-                        making it easier to find content that's already been preserved by legitimate archival services.
-                    </p>
-                    <div class="ethics-note">
-                        <h3>💙 A note on ethics</h3>
-                        <p>
-                            If you regularly read a publication, please consider subscribing to support their work. 
-                            ArchiveJump is best used for occasional research, fact-checking, or exploring new publications—not 
-                            as a replacement for supporting journalism you value.
-                        </p>
-                    </div>
-                </div>
-                <div class="about-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">15+</div>
-                        <div class="stat-label">Supported news sites</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">0</div>
-                        <div class="stat-label">Data collected</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Open source</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="install" class="install">
-        <div class="container">
-            <h2 class="section-title">Get started in 2 minutes</h2>
-            <p class="section-subtitle">
-                ArchiveJump is available for manual installation now. Official store listings are under review and coming soon!
-            </p>
-            
-            <div class="install-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Download</h3>
-                        <p>Download the extension files from our GitHub repository.</p>
-                        <a href="https://github.com/dhrm1k/ArchiveJump" class="btn btn-outline" target="_blank">
-                            📥 Download from GitHub
-                        </a>
-                        <div class="store-status">
-                            <h4>🏪 Store Availability</h4>
-                            <div class="status-item">
-                                <span class="status-badge pending">⏳ Under Review</span>
-                                <span>Mozilla Add-ons (submitted, currently under review)</span>
-                            </div>
-                            <div class="status-item">
-                                <span class="status-badge progress">🔄 Coming Soon</span>
-                                <span>Chrome Web Store (final preparations in progress)</span>
-                            </div>
-                            <p class="status-note">
-                                <strong>Want it now?</strong> Manual installation takes just 2 minutes while we wait for store approvals!
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Install</h3>
-                        <p>Open Chrome → Extensions → Developer Mode → Load Unpacked → Select the folder</p>
-                        <details class="install-details">
-                            <summary>Detailed instructions</summary>
-                            <ol>
-                                <li>Open Chrome and go to <code>chrome://extensions/</code></li>
-                                <li>Enable "Developer mode" (toggle in top-right)</li>
-                                <li>Click "Load unpacked"</li>
-                                <li>Select the <code>extension/</code> folder from the downloaded repository</li>
-                                <li>The extension icon will appear in your toolbar</li>
-                            </ol>
-                            <p><strong>Firefox users:</strong> Similar process at <code>about:debugging</code> → "This Firefox" → "Load Temporary Add-on"</p>
-                        </details>
-                    </div>
-                </div>
-                
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Use</h3>
-                        <p>Visit any news site and click article links. ArchiveJump will handle the rest.</p>
-                        <div class="use-tips">
-                            <p><strong>Pro tip:</strong> Click the extension icon to manually search any page or adjust settings.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="support" class="support">
-        <div class="container">
-            <h2 class="section-title">Questions & Support</h2>
-            
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <h3>Is this legal?</h3>
-                    <p>Yes. ArchiveJump only links to content that's already been archived by legitimate public archival services like Archive.ph and Wayback Machine.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3>Does it work on mobile?</h3>
-                    <p>Currently, ArchiveJump is a desktop browser extension. Mobile support is something we're considering for the future.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3>Which sites are supported?</h3>
-                    <p>Major news sites like NYT, WSJ, The Atlantic, Washington Post, The Guardian, Reuters, Bloomberg, and many more. See the full list in our documentation.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3>Is my data collected?</h3>
-                    <p>No. ArchiveJump stores your preferences locally on your device and doesn't send any data to external servers.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3>Can I contribute?</h3>
-                    <p>Absolutely! ArchiveJump is open source. You can report bugs, suggest features, or contribute code on our GitHub repository.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3>Store availability?</h3>
-                    <p>Mozilla Add-ons: submitted and currently under review. Chrome Web Store: in final preparation stages. Manual installation takes just 2 minutes and works perfectly while we wait for store approvals!</p>
-                </div>
-            </div>
-            
-            <div class="support-contact">
-                <h3>Still have questions?</h3>
-                <p>Reach out on GitHub for support, bug reports, or feature requests. We're here to help!</p>
-                <a href="https://github.com/dhrm1k/ArchiveJump/issues" class="btn btn-primary" target="_blank">
-                    💬 Open an Issue
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <span class="footer-title">ArchiveJump</span>
-                    <p class="footer-description">Making knowledge accessible, one click at a time.</p>
-                </div>
-                
-                <div class="footer-links">
-                    <div class="footer-section">
-                        <h4>Project</h4>
-                        <a href="https://github.com/dhrm1k/ArchiveJump">GitHub</a>
-                        <a href="https://github.com/dhrm1k/ArchiveJump/releases">Releases</a>
-                        <a href="https://github.com/dhrm1k/ArchiveJump/issues">Issues</a>
-                    </div>
-                    
-                    <div class="footer-section">
-                        <h4>Resources</h4>
-                        <a href="#install">Installation</a>
-                        <a href="#support">Support</a>
-                        <a href="https://archive.ph">Archive.ph</a>
-                        <a href="https://web.archive.org">Wayback Machine</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 ArchiveJump. Open source software released under MIT License.</p>
-                <p class="footer-note">
-                    Made with care for researchers, students, and curious minds everywhere.
-                </p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+    <h1>archivejump</h1>
+    <p>browser extension that redirects article links to archived versions when you hit paywalls.</p>
+    
+    <h2>install</h2>
+    <a href="https://addons.mozilla.org/addon/archivejump/" class="install-link">firefox</a>
+    <a href="https://github.com/dhrm1k/ArchiveJump" class="install-link">chrome (manual)</a>
+    
+    <h2>how it works</h2>
+    <p>automatically detects article links from major news sites. when you click a link and hit a paywall, archivejump offers to redirect you to an archived version from archive.ph or wayback machine.</p>
+    
+    <h2>supported sites</h2>
+    <p>new york times, wall street journal, washington post, the atlantic, the guardian, reuters, bloomberg, financial times, and others.</p>
+    
+    <h2>privacy</h2>
+    <p>no tracking, no data collection. your preferences stay on your device.</p>
+    
+    <h2>source</h2>
+    <p><a href="https://github.com/dhrm1k/ArchiveJump">github</a> - open source under mit license</p>
 </body>
 </html>

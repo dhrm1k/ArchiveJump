@@ -32,7 +32,7 @@ chrome.storage.sync.get(['extensionEnabled', 'autoSelectLatest'], function(resul
     autoSelectLatest = result.autoSelectLatest === true; // Default to false
 });
 
-// Listen for messages from popup
+// Listen for messages from popup and background script
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.action === 'updateSettings') {
         extensionEnabled = request.enabled;
@@ -41,6 +41,10 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     // Legacy support for old message format
     else if (request.action === 'toggleExtension') {
         extensionEnabled = request.enabled;
+    }
+    // Handle context menu archive requests
+    else if (request.action === 'archiveUrl') {
+        archiveUrlFromContextMenu(request.url, request.autoSelectLatest);
     }
 });
 
@@ -193,4 +197,79 @@ function showRedirectNotification(link, isAutoSelect = false) {
     setTimeout(() => {
         link.style.backgroundColor = originalBg;
     }, 1000);
+}
+
+// Archive a URL from context menu
+function archiveUrlFromContextMenu(url, autoSelectLatest) {
+    console.log('ArchiveJump: Archiving URL from context menu:', url);
+    
+    // Show notification
+    showArchiveNotification(autoSelectLatest);
+    
+    // Check if we need to fallback to Wayback Machine
+    if (autoSelectLatest) {
+        // Try Archive.ph first, then check if we need Wayback fallback
+        const archiveUrl = "https://archive.ph/newest/" + encodeURIComponent(url);
+        
+        // Open archive in new tab via background script
+        chrome.runtime.sendMessage({
+            action: 'openArchive',
+            url: archiveUrl
+        });
+        
+        // Check for Archive.ph results after a delay and potentially fallback
+        setTimeout(() => {
+            checkAndFallbackToWayback(url);
+        }, 3000);
+    } else {
+        // Go to archive search page
+        const archiveSearchUrl = "https://archive.ph/search/?q=" + encodeURIComponent(url);
+        chrome.runtime.sendMessage({
+            action: 'openArchive',
+            url: archiveSearchUrl
+        });
+    }
+}
+
+// Show notification for context menu actions
+function showArchiveNotification(isAutoSelect = false) {
+    const notification = document.createElement('div');
+    notification.textContent = isAutoSelect ? 
+        'Jumping to latest archive...' : 
+        'Searching Archive.ph...';
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${isAutoSelect ? '#4caf50' : '#1a73e8'};
+        color: white;
+        padding: 12px 18px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        z-index: 10000;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        transition: opacity 0.3s ease;
+        font-weight: 500;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Remove notification after 3 seconds
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 2700);
+}
+
+// Check if Archive.ph has results, fallback to Wayback if needed
+function checkAndFallbackToWayback(originalUrl) {
+    // This is a simplified check - in a real implementation you might
+    // want to check the actual content of the archive page
+    // For now, we'll implement a basic fallback mechanism
+    console.log('ArchiveJump: Checking for potential Wayback fallback for:', originalUrl);
 }

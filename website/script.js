@@ -178,3 +178,41 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// Dark mode functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.querySelector('.theme-icon');
+    
+    // Check for saved theme preference or default to 'light'
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    
+    // Update icon based on current theme
+    updateThemeIcon(currentTheme);
+    
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+        
+        // Add a nice transition effect
+        document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+        setTimeout(() => {
+            document.body.style.transition = '';
+        }, 300);
+    });
+    
+    function updateThemeIcon(theme) {
+        if (theme === 'dark') {
+            themeIcon.textContent = 'light';
+            themeToggle.setAttribute('aria-label', 'switch to light mode');
+        } else {
+            themeIcon.textContent = 'dark';
+            themeToggle.setAttribute('aria-label', 'switch to dark mode');
+        }
+    }
+});
